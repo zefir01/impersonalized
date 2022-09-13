@@ -1,0 +1,11 @@
+name: login-prod
+description: 'AWS oidc login'
+runs:
+  using: "composite"
+  steps:
+    - name: Configure aws credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        role-to-assume: "arn:aws:iam::111111111111:role/github-actions"
+        role-duration-seconds: 3600 # the ttl of the session, in seconds.
+        aws-region: eu-central-1 # use your region here.

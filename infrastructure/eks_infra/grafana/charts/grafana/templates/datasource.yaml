@@ -1,0 +1,19 @@
+apiVersion: integreatly.org/v1alpha1
+kind: GrafanaDataSource
+metadata:
+  name: aws-amp-datasource
+spec:
+  name: aws-amp.yaml
+  datasources:
+    - name: "Prometheus aws amp"
+      type: prometheus
+      access: proxy
+      url: {{.Values.ampEndpoint}}
+      isDefault: true
+      version: 1
+      editable: true
+      jsonData:
+        tlsSkipVerify: true
+        timeInterval: "5s"
+        sigV4Auth: true
+        sigV4Region: {{.Values.region}}

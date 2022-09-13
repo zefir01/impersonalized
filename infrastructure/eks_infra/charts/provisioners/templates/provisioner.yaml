@@ -1,0 +1,35 @@
+apiVersion: karpenter.sh/v1alpha5
+kind: Provisioner
+metadata:
+  name: default
+spec:
+#  requirements:
+#    - key: karpenter.sh/capacity-type
+#      operator: In
+#      values: ["on-demand"]
+#    - key: "node.kubernetes.io/instance-type"
+#      operator: In
+#      values:
+#        - {{.Values.instanceType}}
+  taints:
+  - key: payload
+    value: "true"
+    effect: "NoSchedule"
+  - key: payload
+    value: "true"
+    effect: "NoExecute"
+  limits:
+    resources:
+      cpu: 4
+  provider:
+    metadataOptions:
+      httpEndpoint: enabled
+      httpProtocolIPv6: enabled
+      httpPutResponseHopLimit: 64
+      httpTokens: optional
+    subnetSelector:
+      kubernetes.io/cluster/{{.Values.clusterName}}: "*"
+      type: "private"
+    securityGroupSelector:
+      kubernetes.io/cluster/{{.Values.clusterName}}: "*"
+  ttlSecondsAfterEmpty: 30

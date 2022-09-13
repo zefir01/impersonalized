@@ -1,0 +1,24 @@
+# Local .terraform directories
+.terraform/*
+bootstrap/.terraform/providers
+bootstrap/terraform.tfstate.backup
+
+# Crash log files
+crash.log
+
+# Ignore any .tfvars files that are generated automatically for each Terraform run. Most
+# .tfvars files are managed as part of configuration and so should be included in
+# version control.
+#
+# example.tfvars
+
+# Include override files you do wish to add to version control using negated pattern
+#
+# !example_override.tf
+
+# Include tfplan files to ignore the plan output of command: terraform plan -out=tfplan
+# example: *tfplan*
+/.idea/
+**/.terragrunt-cache
+**/.terraform
+/main/eks_addons/argo/charts/argo/charts/
